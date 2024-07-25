@@ -1,0 +1,9 @@
+{
+  "name": "server",
+  "version": "0.1",
+  "main": "server.js",
+  "keywords": [],
+  "author": "Stormtrooper7652",
+  "license": "ISC",
+  "description": "Backend server for osu password db"
+}
