@@ -1,13 +1,20 @@
 import express from "express";
 import fs from "fs";
-import path from 'path';
-import cors from 'cors';
-const app = express();
-const __dirname = import.meta.dirname;
-const dbPath = `${__dirname}/../db/osu.json`
-const counterPath = `${__dirname}/../db/visitcount.json`;
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-app.use(cors());
+const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const dbPath = `${__dirname}/db/osu.json`;
+const counterPath = `${__dirname}/db/visitcount.json`;
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 app.get("/passwords", (req, res) => {
     fs.readFile(dbPath, 'utf8', (err, data) => {
