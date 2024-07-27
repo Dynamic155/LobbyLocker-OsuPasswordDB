@@ -103,7 +103,6 @@ body {
 }
 
 #pie-chart {
-    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
