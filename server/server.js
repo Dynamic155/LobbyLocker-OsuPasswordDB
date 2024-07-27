@@ -11,6 +11,8 @@ const __dirname = dirname(__filename);
 const dbPath = `${__dirname}/db/osu.json`;
 const counterPath = `${__dirname}/db/visitcount.json`;
 
+let count = 0;
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
@@ -28,10 +30,14 @@ app.get("/passwords", (req, res) => {
 
 app.get("/visit", (req, res) => {
     fs.readFile(counterPath, 'utf8', (err, data) => {
-        let count = 0;
+
         if (!err && data) {
             count = Number(data);
+        } else if (!err && !data) {
+            console.log('File is empty');
+            return res.send(err)
         }
+        
         count++;
         fs.writeFile(counterPath, count.toString(), err => {
             if (err) {
