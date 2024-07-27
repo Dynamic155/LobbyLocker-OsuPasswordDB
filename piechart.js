@@ -62,7 +62,7 @@ async function main() {
 }
 
 async function getStat() {
-    const response = await fetch('http://127.0.0.1:8989/passwords')
+    const response = await fetch('https://server.osudb.online/passwords')
     const data = await response.json()
 
     // sort list
